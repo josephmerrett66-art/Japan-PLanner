@@ -6,11 +6,11 @@
     <title>Japan Itinerary V19</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body { background-color: #f1f5f9; font-family: sans-serif; }
-        .cb { width: 22px; height: 22px; cursor: pointer; border-radius: 6px; }
+        body { background-color: #f8fafc; font-family: sans-serif; }
+        .cb { width: 20px; height: 20px; cursor: pointer; border-radius: 4px; }
         .me-cb { accent-color: #2563eb; }
         .her-cb { accent-color: #db2777; }
-        .st { text-decoration: line-through; color: #cbd5e1; }
+        .st { text-decoration: line-through; color: #94a3b8; opacity: 0.6; }
     </style>
 </head>
 <body class="p-4 md:p-8">
@@ -19,28 +19,28 @@
             <input type="text" id="m-title" value="🇯🇵 JAPAN 2026" oninput="saveAll()" class="bg-transparent text-4xl font-black text-red-600 text-center w-full outline-none">
             
             <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mt-8">
-                <div class="bg-white p-4 rounded-3xl shadow-sm border border-slate-200 text-left">
-                    <span class="text-[9px] font-black text-slate-400 uppercase block">Total Cost</span>
+                <div class="bg-white p-4 rounded-3xl shadow-sm border border-slate-200">
+                    <span class="text-[9px] font-black text-slate-400 uppercase block">Total Trip</span>
                     <span id="s-total" class="text-lg font-black">$0.00</span>
                 </div>
-                <div class="bg-blue-50 p-4 rounded-3xl shadow-sm border border-blue-100 text-left">
+                <div class="bg-blue-50 p-4 rounded-3xl shadow-sm border border-blue-100">
                     <span class="text-[9px] font-black text-blue-500 uppercase block">Joe Paid</span>
                     <span id="s-me" class="text-lg font-black text-blue-600">$0.00</span>
                 </div>
-                <div class="bg-pink-50 p-4 rounded-3xl shadow-sm border border-pink-100 text-left">
+                <div class="bg-pink-50 p-4 rounded-3xl shadow-sm border border-pink-100">
                     <span class="text-[9px] font-black text-pink-500 uppercase block">Partner Paid</span>
                     <span id="s-her" class="text-lg font-black text-pink-600">$0.00</span>
                 </div>
-                <div class="bg-red-50 p-4 rounded-3xl shadow-sm border border-red-100 text-left">
+                <div class="bg-red-50 p-4 rounded-3xl shadow-sm border border-red-100">
                     <span class="text-[9px] font-black text-red-500 uppercase block">Remaining</span>
                     <span id="s-owed" class="text-lg font-black text-red-600">$0.00</span>
                 </div>
             </div>
 
             <div class="flex justify-center gap-2 mt-6">
-                <button onclick="exportJSON()" class="bg-slate-800 text-white px-4 py-2 rounded-xl text-[10px] font-black shadow-lg hover:bg-slate-700 transition">📥 EXPORT BACKUP (.JSON)</button>
+                <button onclick="exportJSON()" class="bg-slate-800 text-white px-4 py-2 rounded-xl text-[10px] font-black shadow-lg hover:bg-slate-700 transition">📥 SAVE BACKUP FILE</button>
                 <label class="bg-white border-2 border-slate-200 px-4 py-2 rounded-xl text-[10px] font-black cursor-pointer shadow-sm hover:border-slate-400 transition">
-                    📤 IMPORT BACKUP
+                    📤 LOAD BACKUP FILE
                     <input type="file" class="hidden" onchange="importJSON(event)">
                 </label>
             </div>
@@ -50,18 +50,17 @@
     </div>
 
     <script>
-        // Initial Full Itinerary Data
         const initialData = [
             {"day": "Day 1", "date": "Sat 25th April", "title": "MELBOURNE TO TOKYO", "details": [{"text": "Flight JQ34 - JQ25", "cost": 0.0, "paidMe": false, "paidPartner": false}, {"text": "APA Hotel Higashi Shinjuku", "cost": 0.0, "paidMe": false, "paidPartner": false}]},
             {"day": "Day 2", "date": "Sun 26th April", "title": "TOKYO EXPLORATION", "details": []},
             {"day": "Day 3", "date": "Mon 27th April", "title": "TOKYO - ART & GAMES", "details": [{"text": "Team labs - Planets", "cost": 0.0, "paidMe": false, "paidPartner": false}, {"text": "Round 1 Arcade", "cost": 0.0, "paidMe": false, "paidPartner": false}]},
-            {"day": "Day 4", "date": "Tue 28th April", "title": "TOKYO", "details": [{"text": "Go see punch", "cost": 0.0, "paidMe": false, "paidPartner": false}]},
-            {"day": "Day 5", "date": "Wed 29th April", "title": "TOKYO TO KAWAGUCHIKO", "details": [{"text": "Kawaguchiko Lakeside Hotel", "cost": 0.0, "paidMe": false, "paidPartner": false}, {"text": "Kachi Kachi Ropeway", "cost": 0.0, "paidMe": false, "paidPartner": false}]},
+            {"day": "Day 4", "date": "Tue 28th April", "title": "TOKYO VISITS", "details": [{"text": "Go see punch", "cost": 0.0, "paidMe": false, "paidPartner": false}]},
+            {"day": "Day 5", "date": "Wed 29th April", "title": "TOKYO TO KAWAGUCHI", "details": [{"text": "Kawaguchiko Lakeside Hotel", "cost": 0.0, "paidMe": false, "paidPartner": false}, {"text": "Kachi Kachi Ropeway", "cost": 0.0, "paidMe": false, "paidPartner": false}]},
             {"day": "Day 6", "date": "Thu 30th April", "title": "LAKE KAWAGUCHI", "details": []},
             {"day": "Day 7", "date": "Fri 1st May", "title": "KAWAGUCHI TO SHIZUOKA", "details": [{"text": "Koko Hotel Shizuoka", "cost": 304.0, "paidMe": false, "paidPartner": false}, {"text": "Aoba Oden Alley", "cost": 0.0, "paidMe": false, "paidPartner": false}, {"text": "Nihondaira Plateau", "cost": 0.0, "paidMe": false, "paidPartner": false}, {"text": "Tea Farm Visit", "cost": 0.0, "paidMe": false, "paidPartner": false}]},
-            {"day": "Day 8", "date": "Sat 2nd May", "title": "SHIZUOKA", "details": [{"text": "Miho no Matsubara", "cost": 0.0, "paidMe": false, "paidPartner": false}]},
+            {"day": "Day 8", "date": "Sat 2nd May", "title": "SHIZUOKA EXPLORE", "details": [{"text": "Miho no Matsubara", "cost": 0.0, "paidMe": false, "paidPartner": false}]},
             {"day": "Day 9", "date": "Sun 3rd May", "title": "SHIZUOKA TO KYOTO", "details": [{"text": "Piece Hostel Kyoto", "cost": 0.0, "paidMe": false, "paidPartner": false}]},
-            {"day": "Day 10", "date": "Mon 4th May", "title": "KYOTO - NARA DAY TRIP", "details": [{"text": "Nara Deer Park", "cost": 0.0, "paidMe": false, "paidPartner": false}]},
+            {"day": "Day 10", "date": "Mon 4th May", "title": "KYOTO - NARA TRIP", "details": [{"text": "Nara Deer Park", "cost": 0.0, "paidMe": false, "paidPartner": false}]},
             {"day": "Day 11", "date": "Tue 5th May", "title": "KYOTO - RIVER BOAT", "details": [{"text": "Hozugawa River Boat Tour", "cost": 0.0, "paidMe": false, "paidPartner": false}]},
             {"day": "Day 12", "date": "Wed 6th May", "title": "KYOTO", "details": []},
             {"day": "Day 13", "date": "Thu 7th May", "title": "KYOTO", "details": []},
@@ -70,10 +69,10 @@
             {"day": "Day 16", "date": "Sun 10th May", "title": "CAIRNS TO MELBOURNE", "details": [{"text": "Flight Home", "cost": 0.0, "paidMe": false, "paidPartner": false}]}
         ];
 
-        let data = JSON.parse(localStorage.getItem('japan-v19-storage')) || initialData;
+        let data = JSON.parse(localStorage.getItem('j-v19-store')) || initialData;
 
         function saveAll() {
-            localStorage.setItem('japan-v19-storage', JSON.stringify(data));
+            localStorage.setItem('j-v19-store', JSON.stringify(data));
             calc();
         }
 
@@ -111,7 +110,7 @@
 
         function delI(d, i, e) {
             e.stopPropagation();
-            if(confirm("Delete this item?")) {
+            if(confirm("Remove this?")) {
                 data[d].details.splice(i, 1);
                 render(); saveAll();
             }
@@ -122,68 +121,57 @@
             list.innerHTML = '';
             data.forEach((day, dIdx) => {
                 const card = document.createElement('div');
-                card.className = "bg-white rounded-[1.5rem] shadow-sm border border-slate-200 overflow-hidden";
-                
+                card.className = "bg-white rounded-3xl shadow-sm border border-slate-200 overflow-hidden";
                 let rows = day.details.map((item, iIdx) => `
                     <div class="border-b border-slate-50 last:border-0 p-4 flex items-center gap-3">
-                        <div class="flex gap-1.5">
+                        <div class="flex gap-1">
                             <input type="checkbox" class="cb me-cb" ${item.paidMe ? 'checked' : ''} onclick="toggle(${dIdx}, ${iIdx}, 'paidMe', event)">
                             <input type="checkbox" class="cb her-cb" ${item.paidPartner ? 'checked' : ''} onclick="toggle(${dIdx}, ${iIdx}, 'paidPartner', event)">
                         </div>
                         <input type="text" value="${item.text}" onchange="updateI(${dIdx}, ${iIdx}, 'text', this.value)" class="flex-1 font-bold text-xs outline-none bg-transparent ${item.paidMe || item.paidPartner ? 'st' : ''}">
                         <div class="flex items-center gap-2">
-                            <span class="text-[10px] text-slate-400 font-bold">$</span>
-                            <input type="number" step="0.01" value="${item.cost}" onchange="updateI(${dIdx}, ${iIdx}, 'cost', this.value)" class="w-16 font-mono font-black text-right text-xs bg-slate-50 rounded p-1 outline-none">
+                            <span class="text-[9px] text-slate-400 font-black">$</span>
+                            <input type="number" step="0.01" value="${item.cost}" onchange="updateI(${dIdx}, ${iIdx}, 'cost', this.value)" class="w-16 font-mono font-black text-right text-xs bg-slate-50 rounded-lg p-1 outline-none">
                             <button onclick="delI(${dIdx}, ${iIdx}, event)" class="text-slate-200 hover:text-red-500 font-bold px-2">×</button>
                         </div>
                     </div>
                 `).join('');
 
                 card.innerHTML = `
-                    <div class="bg-slate-50/80 px-5 py-3 border-b border-slate-100 flex justify-between items-center">
+                    <div class="bg-slate-50/50 px-5 py-4 border-b border-slate-100 flex justify-between items-center">
                         <div>
-                            <span class="text-red-600 font-black text-[9px] uppercase tracking-tighter">${day.day} • ${day.date}</span>
-                            <h2 class="font-black text-slate-800 text-xs uppercase">${day.title}</h2>
+                            <span class="text-red-600 font-black text-[8px] uppercase tracking-widest">${day.day} • ${day.date}</span>
+                            <h2 class="font-black text-slate-800 text-sm uppercase">${day.title}</h2>
                         </div>
-                        <button onclick="addI(${dIdx})" class="bg-white border border-slate-200 text-slate-400 w-6 h-6 rounded-lg font-bold hover:text-blue-500 hover:border-blue-200 transition">+</button>
+                        <button onclick="addI(${dIdx})" class="bg-white border border-slate-200 text-slate-400 w-8 h-8 rounded-xl font-bold hover:text-blue-500 transition">+</button>
                     </div>
-                    <div>${rows || '<div class="p-6 text-center text-slate-300 text-[10px] font-black uppercase tracking-widest italic">Free Day / Open Schedule</div>'}</div>
+                    <div>${rows || '<div class="p-8 text-center text-slate-300 text-[10px] font-black uppercase tracking-widest italic">Open Schedule</div>'}</div>
                 `;
                 list.appendChild(card);
             });
         }
 
-        // BACKUP FUNCTIONS
         function exportJSON() {
             const blob = new Blob([JSON.stringify(data)], {type:'application/json'});
             const a = document.createElement('a');
-            const url = URL.createObjectURL(blob);
-            a.href = url;
-            a.download = `Japan_Trip_Backup_${new Date().toISOString().split('T')[0]}.json`;
+            a.href = URL.createObjectURL(blob);
+            a.download = `Japan_Itinerary_Backup.json`;
             a.click();
-            URL.revokeObjectURL(url);
         }
 
         function importJSON(e) {
             const reader = new FileReader();
             reader.onload = (ev) => {
                 try {
-                    const importedData = JSON.parse(ev.target.result);
-                    if (Array.isArray(importedData)) {
-                        data = importedData;
-                        render();
-                        saveAll();
-                        alert("Itinerary Restored!");
-                    }
-                } catch (err) {
-                    alert("Invalid backup file.");
-                }
+                    data = JSON.parse(ev.target.result);
+                    render(); saveAll();
+                    alert("Backup Loaded!");
+                } catch(err) { alert("Error loading file."); }
             };
             reader.readAsText(e.target.files[0]);
         }
 
-        render(); 
-        calc();
+        render(); calc();
     </script>
 </body>
 </html>

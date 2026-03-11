@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Japan Itinerary V16 - Cloud Sync</title>
+    <title>Japan Trip V17 - Cloud Sync</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body { background-color: #f8fafc; font-family: sans-serif; }
+        body { background-color: #f1f5f9; font-family: sans-serif; }
         .cb { width: 22px; height: 22px; cursor: pointer; border-radius: 6px; }
         .me-cb { accent-color: #2563eb; }
         .her-cb { accent-color: #db2777; }
@@ -16,76 +16,86 @@
 <body class="p-4 md:p-8">
     <div class="max-w-4xl mx-auto">
         <header class="mb-8 text-center">
-            <h1 class="text-4xl font-black text-red-600">🇯🇵 JAPAN 2026</h1>
-            <p id="sync-status" class="text-slate-400 font-bold text-[10px] tracking-widest mt-2 uppercase">OFFLINE MODE</p>
+            <input type="text" id="m-title" value="🇯🇵 JAPAN 2026" class="bg-transparent text-4xl font-black text-red-600 text-center w-full outline-none">
+            <p id="sync-status" class="text-slate-400 font-bold text-[10px] tracking-widest mt-2 uppercase italic">Offline Mode</p>
             
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mt-8 text-left">
-                <div class="bg-white p-4 rounded-3xl shadow-sm border border-slate-200">
-                    <span class="text-[9px] font-black text-slate-400 uppercase block">Total</span>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mt-8">
+                <div class="bg-white p-4 rounded-3xl shadow-sm border border-slate-200 text-left">
+                    <span class="text-[9px] font-black text-slate-400 uppercase block">Total Budget</span>
                     <span id="s-total" class="text-lg font-black">$0.00</span>
                 </div>
-                <div class="bg-blue-50 p-4 rounded-3xl shadow-sm border border-blue-100">
+                <div class="bg-blue-50 p-4 rounded-3xl shadow-sm border border-blue-100 text-left">
                     <span class="text-[9px] font-black text-blue-500 uppercase block">Joe Paid</span>
                     <span id="s-me" class="text-lg font-black text-blue-600">$0.00</span>
                 </div>
-                <div class="bg-pink-50 p-4 rounded-3xl shadow-sm border border-pink-100">
+                <div class="bg-pink-50 p-4 rounded-3xl shadow-sm border border-pink-100 text-left">
                     <span class="text-[9px] font-black text-pink-500 uppercase block">Partner Paid</span>
                     <span id="s-her" class="text-lg font-black text-pink-600">$0.00</span>
                 </div>
-                <div class="bg-red-50 p-4 rounded-3xl shadow-sm border border-red-100">
-                    <span class="text-[9px] font-black text-red-500 uppercase block">Remaining</span>
+                <div class="bg-red-50 p-4 rounded-3xl shadow-sm border border-red-100 text-left">
+                    <span class="text-[9px] font-black text-red-500 uppercase block">Left to Pay</span>
                     <span id="s-owed" class="text-lg font-black text-red-600">$0.00</span>
                 </div>
             </div>
         </header>
 
-        <div id="list" class="space-y-6"></div>
-        
-        <div class="mt-12 p-8 bg-slate-900 rounded-[2.5rem] text-white shadow-2xl">
+        <div id="list" class="space-y-8"></div>
+
+        <div class="mt-12 p-8 bg-slate-900 rounded-[2.5rem] text-white shadow-2xl border-t-4 border-blue-500">
              <div class="flex items-center gap-3 mb-4">
-                <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                <h3 class="text-xs font-black uppercase tracking-widest">Live Sync Setup</h3>
+                <div id="sync-dot" class="w-2 h-2 bg-slate-500 rounded-full"></div>
+                <h3 class="text-xs font-black uppercase tracking-widest">Partner Live Sync</h3>
              </div>
-             <p class="text-[11px] text-slate-400 mb-6 leading-relaxed">Enter a unique <b>Trip Key</b> below on both phones to stay in sync. Use something unique like your names + the year.</p>
-             <div class="flex flex-col gap-3">
-                <input type="text" id="trip-key" placeholder="Enter Secret Trip Key..." class="bg-slate-800 border-none rounded-2xl p-4 text-sm outline-none text-blue-400 font-mono">
-                <button onclick="initCloud()" class="bg-blue-600 hover:bg-blue-500 transition-colors py-4 rounded-2xl text-xs font-black tracking-widest">ACTIVATE CLOUD SYNC</button>
+             <p class="text-[11px] text-slate-400 mb-6 leading-relaxed">Enter a secret <b>Trip Key</b> below on both your phones. Anything you change will instantly sync to her phone.</p>
+             <div class="flex flex-col md:flex-row gap-3">
+                <input type="text" id="trip-key" placeholder="e.g. joe-japan-2026-secret" class="flex-1 bg-slate-800 border-none rounded-2xl p-4 text-sm outline-none text-blue-400 font-mono">
+                <button onclick="initCloud()" class="bg-blue-600 hover:bg-blue-500 px-8 py-4 rounded-2xl text-[10px] font-black tracking-widest uppercase">Connect Phones</button>
              </div>
         </div>
     </div>
 
     <script>
+        const AI_DB = {
+            "Flight": "Follow the colored floor tracks at Narita T3!",
+            "APA Hotel": "Check out the multi-functional TV and massive bathtubs.",
+            "Team labs": "Wear shorts! You will walk through water knee-deep.",
+            "Nihondaira": "Best views of Fuji on a clear day.",
+            "7-Eleven": "Grab an egg salad sandwich—best in the world."
+        };
+
         let data = [
-            {"day": "Day 1", "date": "Sat 25th", "title": "MELBOURNE TO TOKYO", "details": [{"text": "Flight JQ34", "cost": 0, "paidMe": false, "paidPartner": false}]},
-            {"day": "Day 7", "date": "Fri 1st", "title": "SHIZUOKA", "details": [{"text": "Koko Hotel", "cost": 304, "paidMe": false, "paidPartner": false}, {"text": "Nihondaira Plateau", "cost": 0, "paidMe": false, "paidPartner": false}]}
+            {"day": "Day 1", "date": "Saturday 25th", "title": "MELBOURNE TO JAPAN", "details": [{"text": "Flight JQ34 - JQ25", "cost": 0.0, "paidMe": false, "paidPartner": false, "info": "6:25 AM departure"}, {"text": "APA Hotel Higashi Shinjuku", "cost": 0.0, "paidMe": false, "paidPartner": false, "info": "Check out Wed 29th"}]},
+            {"day": "Day 2", "date": "Sunday 26th", "title": "TOKYO", "details": []},
+            {"day": "Day 3", "date": "Monday 27th", "title": "TOKYO", "details": [{"text": "Team labs - Planets", "cost": 0.0, "paidMe": false, "paidPartner": false}, {"text": "Round 1 Arcade", "cost": 0.0, "paidMe": false, "paidPartner": false}]},
+            {"day": "Day 4", "date": "Tuesday 28th", "title": "TOKYO", "details": [{"text": "Go see punch", "cost": 0.0, "paidMe": false, "paidPartner": false}]},
+            {"day": "Day 5", "date": "Wednesday 29th", "title": "TOKYO - KAWAGUCHI", "details": [{"text": "Kawaguchiko Lakeside Hotel", "cost": 0.0, "paidMe": false, "paidPartner": false}, {"text": "Kachi Kachi Ropeway", "cost": 0.0, "paidMe": false, "paidPartner": false}]},
+            {"day": "Day 7", "date": "Friday 1st", "title": "KAWAGUCHI - SHIZUOKA", "details": [{"text": "Koko Hotel", "cost": 304.0, "paidMe": false, "paidPartner": false}, {"text": "Aoba Oden Alley", "cost": 0.0, "paidMe": false, "paidPartner": false}, {"text": "Nihondaira Plateau", "cost": 0.0, "paidMe": false, "paidPartner": false}]},
+            {"day": "Day 10", "date": "Monday 4th", "title": "KYOTO - NARA", "details": [{"text": "Day trip to Nara", "cost": 0.0, "paidMe": false, "paidPartner": false}]},
+            {"day": "Day 15", "date": "Saturday 9th", "title": "OSAKA - HOME", "details": [{"text": "Flight JQ16", "cost": 0.0, "paidMe": false, "paidPartner": false}]}
         ];
-        
+
         let tripId = localStorage.getItem('tripId') || "";
         document.getElementById('trip-key').value = tripId;
 
-        // Using a free, simple JSON storage API
         const API_URL = "https://kvbin.com/api/v1/bins/";
 
         async function initCloud() {
             const key = document.getElementById('trip-key').value.trim();
-            if(!key) return alert("Please enter a key.");
+            if(!key) return alert("Enter a key!");
             tripId = key;
             localStorage.setItem('tripId', key);
-            document.getElementById('sync-status').innerText = "CONNECTING...";
+            document.getElementById('sync-status').innerText = "Connecting...";
             await pullData();
-            setInterval(pullData, 8000); // Check for updates every 8 seconds
+            setInterval(pullData, 5000); 
         }
 
         async function pushData() {
             if(!tripId) return;
             try {
-                await fetch(API_URL + tripId, {
-                    method: 'POST',
-                    body: JSON.stringify(data),
-                    headers: { 'Content-Type': 'application/json' }
-                });
-                document.getElementById('sync-status').innerText = "LIVE SYNC ACTIVE ✅";
-            } catch(e) { document.getElementById('sync-status').innerText = "SYNC ERROR"; }
+                await fetch(API_URL + tripId, { method: 'POST', body: JSON.stringify(data), headers: { 'Content-Type': 'application/json' } });
+                document.getElementById('sync-status').innerText = "Synced ✅";
+                document.getElementById('sync-dot').className = "w-2 h-2 bg-green-500 animate-pulse";
+            } catch(e) { }
         }
 
         async function pullData() {
@@ -99,9 +109,10 @@
                         render();
                         calc();
                     }
-                    document.getElementById('sync-status').innerText = "LIVE SYNC ACTIVE ✅";
+                    document.getElementById('sync-status').innerText = "Synced ✅";
+                    document.getElementById('sync-dot').className = "w-2 h-2 bg-green-500";
                 }
-            } catch(e) { console.error("Pull failed", e); }
+            } catch(e) { }
         }
 
         function calc() {
@@ -120,17 +131,15 @@
             document.getElementById('s-owed').innerText = '$' + (t-paid).toFixed(2);
         }
 
-        function toggle(d, i, f) {
+        function toggle(d, i, f, e) {
+            e.stopPropagation();
             data[d].details[i][f] = !data[d].details[i][f];
-            render();
-            calc();
-            pushData();
+            render(); calc(); pushData();
         }
 
         function updateI(d, i, f, v) {
             data[d].details[i][f] = (f === 'cost') ? parseFloat(v) || 0 : v;
-            calc();
-            pushData();
+            calc(); pushData();
         }
 
         function render() {
@@ -140,27 +149,24 @@
                 const card = document.createElement('div');
                 card.className = "bg-white rounded-[2rem] shadow-sm border border-slate-200 overflow-hidden";
                 let rows = day.details.map((item, iIdx) => `
-                    <div class="border-b border-slate-50 last:border-0 p-5 flex items-center gap-4">
-                         <div class="flex gap-2">
-                            <input type="checkbox" class="cb me-cb" ${item.paidMe ? 'checked' : ''} onchange="toggle(${dIdx}, ${iIdx}, 'paidMe')">
-                            <input type="checkbox" class="cb her-cb" ${item.paidPartner ? 'checked' : ''} onchange="toggle(${dIdx}, ${iIdx}, 'paidPartner')">
-                         </div>
-                         <div class="flex-1">
+                    <div class="border-b border-slate-50 last:border-0 p-5 flex items-center gap-3">
+                        <div class="flex gap-1.5">
+                            <input type="checkbox" class="cb me-cb" ${item.paidMe ? 'checked' : ''} onclick="toggle(${dIdx}, ${iIdx}, 'paidMe', event)">
+                            <input type="checkbox" class="cb her-cb" ${item.paidPartner ? 'checked' : ''} onclick="toggle(${dIdx}, ${iIdx}, 'paidPartner', event)">
+                        </div>
+                        <div class="flex-1">
                             <input type="text" value="${item.text}" onchange="updateI(${dIdx}, ${iIdx}, 'text', this.value)" class="w-full font-bold text-xs outline-none bg-transparent ${item.paidMe || item.paidPartner ? 'st' : ''}">
-                         </div>
-                         <div class="flex items-center gap-1 font-mono font-black text-xs text-slate-500">
-                            <span>$</span>
-                            <input type="number" value="${item.cost}" onchange="updateI(${dIdx}, ${iIdx}, 'cost', this.value)" class="w-14 text-right outline-none bg-transparent">
-                         </div>
+                            <div class="text-[8px] font-black text-blue-500 uppercase mt-1">Tap to edit notes</div>
+                        </div>
+                        <input type="number" value="${item.cost}" onchange="updateI(${dIdx}, ${iIdx}, 'cost', this.value)" class="w-14 font-mono font-black text-right text-xs bg-transparent outline-none">
                     </div>
                 `).join('');
-                card.innerHTML = `<div class="bg-slate-50 px-6 py-4 border-b border-slate-100 font-black text-slate-400 uppercase text-[9px] tracking-widest">${day.day} • ${day.title}</div><div>${rows}</div>`;
+                card.innerHTML = `<div class="bg-slate-50/80 px-6 py-4 border-b border-slate-100 font-black text-slate-400 text-[10px] tracking-tighter uppercase">${day.day} • ${day.title}</div><div>${rows}</div>`;
                 list.appendChild(card);
             });
         }
 
-        render();
-        calc();
+        render(); calc();
         if(tripId) initCloud();
     </script>
 </body>

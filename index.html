@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<title>Japan 2025 — Joe &amp; Beth</title>
+<title>Japan 2026 — Joe &amp; Beth</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -234,15 +234,17 @@ input::placeholder, textarea::placeholder { color: var(--muted3); }
 .entry-row:focus-within { border-color: var(--muted3); box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
 .entry-row.paid-row { background: var(--green-bg); border-color: var(--green-bd); }
 
-/* Top row: full-width flex */
+/* Entry layout: 3 rows */
 .entry-top {
   display: flex; align-items: center; gap: 0;
   padding: 11px 13px 0;
 }
-/* Bottom row */
+.entry-mid {
+  padding: 6px 13px 0;
+}
 .entry-bottom {
   display: flex; align-items: center;
-  padding: 7px 13px 10px; gap: 0;
+  padding: 5px 13px 10px; gap: 0;
 }
 
 /* Checks */
@@ -274,7 +276,7 @@ input::placeholder, textarea::placeholder { color: var(--muted3); }
 
 /* Name */
 .entry-name {
-  flex: 1; min-width: 0; background: transparent; border: none;
+  width: 100%; background: transparent; border: none;
   color: var(--dark); font-size: 14px; font-weight: 400; line-height: 1.3;
   -webkit-appearance: none;
 }
@@ -456,8 +458,8 @@ input::placeholder, textarea::placeholder { color: var(--muted3); }
 <div class="header">
   <div class="header-inner">
     <div>
-      <div class="header-eyebrow">Trip Planner · Japan 2025</div>
-      <div class="header-title">🇯🇵 Japan 2025</div>
+      <div class="header-eyebrow">Trip Planner · Japan 2026</div>
+      <div class="header-title">🇯🇵 Japan 2026</div>
       <div class="header-sub">Joe &amp; Beth &middot; 25 Apr – 10 May &middot; 16 days</div>
     </div>
     <div class="header-chips">
@@ -519,7 +521,7 @@ input::placeholder, textarea::placeholder { color: var(--muted3); }
 <script>
 
 // ── Config ──────────────────────────────────────────────────────────────────
-const TRIP_START  = new Date('2025-04-25');
+const TRIP_START  = new Date('2026-04-25');
 const TOTAL_DAYS  = 16;
 const STORAGE_KEY = 'japan-planner-v4';
 
@@ -579,7 +581,7 @@ function exportJSON() {
   const blob = new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' });
   const a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
-  a.download = 'japan-trip-2025.json';
+  a.download = 'japan-trip-2026.json';
   a.click();
   URL.revokeObjectURL(a.href);
   showToast('✓ Exported successfully');
@@ -730,7 +732,8 @@ function buildEntryRow(di, eid) {
           ${Object.entries(CATS).map(([k,v])=>`<option value="${k}"${entry.category===k?' selected':''}>${v.label}</option>`).join('')}
         </select>
       </div>
-      <div class="entry-vdiv"></div>
+    </div>
+    <div class="entry-mid">
       <input class="entry-name" placeholder="Description..." value="${esc(entry.name)}" />
     </div>
     <div class="entry-bottom">
@@ -893,7 +896,7 @@ Return the COMPLETE updated JSON only — no explanation, no markdown fences. Th
 
 ${buildCurrentJSON()}
 
-For every entry where "price" is empty or "0", fill in a realistic estimated price in AUD based on typical costs in Japan in 2025. Do not change any other fields. Return the COMPLETE updated JSON only — no explanation, no markdown fences.`
+For every entry where "price" is empty or "0", fill in a realistic estimated price in AUD based on typical costs in Japan in 2026. Do not change any other fields. Return the COMPLETE updated JSON only — no explanation, no markdown fences.`
   },
   {
     icon: '🚅', iconBg: '#f3e8ff',
@@ -957,7 +960,7 @@ Return the COMPLETE updated JSON only — no explanation, no markdown fences.`
     icon: '📋', iconBg: '#bae6fd',
     title: 'Generate a packing list',
     desc: 'Creates a packing list based on your activities, cities and the time of year.',
-    build: () => `You are a Japan travel expert. Based on this itinerary for Joe & Beth travelling in late April to early May 2025:
+    build: () => `You are a Japan travel expert. Based on this itinerary for Joe & Beth travelling in late April to early May 2026:
 
 ${buildTripSummary()}
 

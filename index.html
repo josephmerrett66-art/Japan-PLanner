@@ -2,352 +2,453 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Japan 2025 — Joe & Beth</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>Japan 2025 — Joe &amp; Beth</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg: #f0f2f5;
-    --white: #ffffff;
-    --dark: #111827;
-    --dark2: #1f2937;
-    --dark3: #374151;
-    --gray1: #6b7280;
-    --gray2: #9ca3af;
-    --gray3: #d1d5db;
-    --gray4: #e5e7eb;
-    --gray5: #f3f4f6;
-    --gray6: #f8f9fb;
-    --border: #eef0f4;
-    --blue: #3b82f6;
-    --blue-light: #eff6ff;
-    --blue-mid: #dbeafe;
-    --purple: #8b5cf6;
-    --green: #10b981;
-    --red: #ef4444;
-    --amber: #f59e0b;
-    --shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04);
-    --shadow-md: 0 2px 8px rgba(0,0,0,0.08), 0 8px 28px rgba(0,0,0,0.06);
-    --radius: 18px;
-    --radius-sm: 10px;
-    --radius-xs: 6px;
-  }
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--bg);
-    color: var(--dark);
-    min-height: 100vh;
-    padding-bottom: 90px;
-  }
-  ::-webkit-scrollbar { width: 5px; }
-  ::-webkit-scrollbar-track { background: var(--bg); }
-  ::-webkit-scrollbar-thumb { background: var(--gray4); border-radius: 3px; }
-  input, textarea, select, button { font-family: 'DM Sans', sans-serif; outline: none; }
-  input::placeholder, textarea::placeholder { color: var(--gray3); }
 
-  /* ── Header ── */
-  .header {
-    background: var(--dark);
-    padding: 32px 24px 28px;
-    position: sticky; top: 0; z-index: 50;
-  }
-  .header-inner {
-    max-width: 860px; margin: 0 auto;
-    display: flex; align-items: flex-end;
-    justify-content: space-between; gap: 20px; flex-wrap: wrap;
-  }
-  .header-eyebrow {
-    font-family: 'DM Mono', monospace; font-size: 9px;
-    letter-spacing: 0.22em; color: #4b5563;
-    text-transform: uppercase; margin-bottom: 10px;
-  }
-  .header-title { font-size: 34px; font-weight: 700; color: #f9fafb; letter-spacing: -0.03em; line-height: 1; }
-  .header-sub { margin-top: 8px; font-size: 13px; color: var(--gray1); font-weight: 300; letter-spacing: 0.02em; }
-  .header-chips { display: flex; gap: 10px; flex-wrap: wrap; align-items: flex-start; }
-  .header-chip { background: var(--dark2); border-radius: 12px; padding: 10px 18px; text-align: center; }
-  .chip-label { font-family: 'DM Mono', monospace; font-size: 8px; color: #4b5563; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 4px; }
-  .chip-value { font-family: 'DM Mono', monospace; font-size: 19px; font-weight: 600; color: #f9fafb; }
-  .chip-value.green { color: #34d399; }
+/* ── Reset & tokens ─────────────────────────────────────────────────────────── */
+:root {
+  --bg:        #f0f2f6;
+  --surface:   #ffffff;
+  --surface2:  #f7f8fb;
+  --dark:      #0d1117;
+  --dark2:     #161b22;
+  --dark3:     #21262d;
+  --dark4:     #30363d;
+  --muted:     #58637a;
+  --muted2:    #8b95a9;
+  --muted3:    #c4cad6;
+  --muted4:    #e1e6ef;
+  --muted5:    #f0f3f8;
+  --border:    #e4e9f2;
+  --blue:      #3b82f6;
+  --purple:    #7c3aed;
+  --green:     #059669;
+  --green-bg:  #ecfdf5;
+  --green-bd:  #a7f3d0;
+  --red:       #dc2626;
+  --amber:     #d97706;
+  --shadow-1:  0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-2:  0 4px 16px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+  --r-2xl: 22px;
+  --r-xl:  16px;
+  --r-lg:  12px;
+  --r-md:  8px;
+  --r-sm:  6px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--dark);
+  min-height: 100vh;
+  padding-bottom: 110px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+input, textarea, select, button, label {
+  font-family: 'DM Sans', sans-serif;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+input::placeholder, textarea::placeholder { color: var(--muted3); }
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-thumb { background: var(--muted4); border-radius: 4px; }
 
-  /* ── Toolbar ── */
-  .toolbar { background: var(--dark2); border-top: 1px solid #2d3748; padding: 10px 24px; }
-  .toolbar-inner { max-width: 860px; margin: 0 auto; display: flex; gap: 8px; align-items: center; }
-  .toolbar-btn {
-    display: inline-flex; align-items: center; gap: 6px;
-    background: var(--dark3); border: 1px solid #4b5563;
-    border-radius: 8px; color: #d1d5db; cursor: pointer;
-    font-size: 11px; font-weight: 500; letter-spacing: 0.04em;
-    padding: 7px 14px; transition: all 0.15s; text-transform: uppercase;
-  }
-  .toolbar-btn:hover { background: #4b5563; color: #fff; }
-  .toolbar-btn.primary { background: var(--blue); border-color: var(--blue); color: #fff; }
-  .toolbar-btn.primary:hover { background: #2563eb; }
+/* ── Header ─────────────────────────────────────────────────────────────────── */
+.header {
+  background: var(--dark);
+  padding: 16px 20px 14px;
+  padding-top: max(16px, env(safe-area-inset-top, 16px));
+  position: sticky; top: 0; z-index: 60;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.header-inner {
+  max-width: 860px; margin: 0 auto;
+  display: flex; align-items: center;
+  justify-content: space-between; gap: 12px;
+}
+.header-eyebrow {
+  font-family: 'DM Mono', monospace; font-size: 8.5px;
+  letter-spacing: 0.2em; color: #3d4d63;
+  text-transform: uppercase; margin-bottom: 5px;
+}
+.header-title {
+  font-size: 22px; font-weight: 700; color: #f0f4f8;
+  letter-spacing: -0.02em; line-height: 1.15;
+}
+.header-sub {
+  margin-top: 3px; font-size: 11.5px; color: #3d4d63;
+  font-weight: 400; letter-spacing: 0.01em;
+}
+.header-chips { display: flex; gap: 6px; flex-shrink: 0; }
+.header-chip {
+  background: var(--dark2); border-radius: var(--r-lg);
+  padding: 7px 12px; text-align: center;
+  border: 1px solid rgba(255,255,255,0.05);
+}
+.chip-label {
+  font-family: 'DM Mono', monospace; font-size: 7px;
+  color: #3d4d63; letter-spacing: 0.16em;
+  text-transform: uppercase; margin-bottom: 3px;
+}
+.chip-value {
+  font-family: 'DM Mono', monospace; font-size: 15px;
+  font-weight: 600; color: #e8edf4; line-height: 1;
+}
+.chip-value.green { color: #34d399; }
 
-  /* ── Main ── */
-  .main { max-width: 860px; margin: 0 auto; padding: 20px 16px; }
+/* ── Nav ─────────────────────────────────────────────────────────────────────── */
+.nav {
+  background: var(--dark2);
+  padding: 0 20px;
+  display: flex;
+  overflow-x: auto; -webkit-overflow-scrolling: touch;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+.nav::-webkit-scrollbar { display: none; }
+.nav-inner { max-width: 860px; margin: 0 auto; display: flex; }
+.tab-btn {
+  background: transparent; border: none;
+  border-bottom: 2px solid transparent;
+  color: #3d4d63; cursor: pointer;
+  font-size: 10.5px; font-weight: 600;
+  letter-spacing: 0.08em; padding: 12px 16px;
+  transition: color 0.15s, border-color 0.15s;
+  white-space: nowrap; text-transform: uppercase;
+  font-family: 'DM Mono', monospace;
+}
+.tab-btn.active { color: #e8edf4; border-bottom-color: var(--blue); }
 
-  /* ── Day card ── */
-  .day-card {
-    background: var(--white); border-radius: var(--radius);
-    margin-bottom: 14px; overflow: hidden;
-    box-shadow: var(--shadow-sm); transition: box-shadow 0.2s;
-  }
-  .day-card:hover { box-shadow: var(--shadow-md); }
-  .day-header {
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 20px 22px 16px; border-bottom: 1.5px solid var(--gray5);
-    cursor: pointer; user-select: none; gap: 12px;
-  }
-  .day-header-left { flex: 1; min-width: 0; }
-  .day-chip-row { display: flex; align-items: center; margin-bottom: 8px; gap: 10px; }
-  .day-chip {
-    display: inline-flex; align-items: center;
-    background: var(--dark); color: white; border-radius: var(--radius-xs);
-    font-family: 'DM Mono', monospace; font-size: 9px; font-weight: 500;
-    letter-spacing: 0.1em; padding: 3px 9px; text-transform: uppercase;
-  }
-  .day-date { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--gray2); letter-spacing: 0.06em; }
-  .day-city-input {
-    background: transparent; border: none; color: var(--dark);
-    font-size: 21px; font-weight: 700; letter-spacing: -0.02em;
-    text-transform: uppercase; width: 100%;
-  }
-  .day-city-input::placeholder { color: var(--gray4); }
-  .day-header-right { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
-  .day-total {
-    font-family: 'DM Mono', monospace; font-size: 13px; font-weight: 500;
-    color: var(--dark3); background: var(--gray5); border-radius: 8px; padding: 4px 12px;
-  }
-  .add-btn {
-    width: 34px; height: 34px; border-radius: 50%;
-    background: var(--dark); border: none; color: white;
-    font-size: 20px; cursor: pointer; display: flex;
-    align-items: center; justify-content: center;
-    transition: background 0.15s, transform 0.1s; flex-shrink: 0; line-height: 1;
-  }
-  .add-btn:hover { background: var(--dark3); transform: scale(1.06); }
-  .collapse-arrow { color: var(--gray3); font-size: 12px; transition: transform 0.2s; }
-  .collapsed .collapse-arrow { transform: rotate(-90deg); }
+/* ── Toolbar ─────────────────────────────────────────────────────────────────── */
+.toolbar {
+  background: var(--dark2); padding: 8px 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+}
+.toolbar-inner {
+  max-width: 860px; margin: 0 auto;
+  display: flex; gap: 7px; align-items: center;
+}
+.toolbar-btn {
+  display: inline-flex; align-items: center; gap: 5px;
+  background: var(--dark3); border: 1px solid var(--dark4);
+  border-radius: var(--r-md); color: #8b95a9; cursor: pointer;
+  font-size: 10.5px; font-weight: 600; letter-spacing: 0.05em;
+  padding: 8px 15px; transition: all 0.15s; text-transform: uppercase;
+  white-space: nowrap; min-height: 36px;
+}
+.toolbar-btn:active { opacity: 0.75; transform: scale(0.97); }
+.toolbar-btn.primary { background: var(--blue); border-color: var(--blue); color: #fff; }
 
-  /* ── Day body ── */
-  .day-body { padding: 14px 18px 18px; }
-  .free-day-msg {
-    text-align: center; font-family: 'DM Mono', monospace;
-    font-size: 10px; letter-spacing: 0.12em; color: var(--gray3);
-    text-transform: uppercase; padding: 20px;
-  }
+/* ── Tabs ─────────────────────────────────────────────────────────────────────── */
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
 
-  /* ── Entry row ── */
-  .entry-row {
-    background: var(--gray6); border: 1.5px solid var(--border);
-    border-radius: var(--radius-sm); margin-bottom: 8px; overflow: hidden;
-    transition: border-color 0.15s, box-shadow 0.15s;
-    animation: fadeUp 0.18s ease forwards;
-  }
-  .entry-row:hover { border-color: #dde2ec; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
-  .entry-main {
-    display: flex; align-items: center; gap: 10px;
-    padding: 11px 14px; flex-wrap: wrap;
-  }
+/* ── Main ────────────────────────────────────────────────────────────────────── */
+.main { max-width: 860px; margin: 0 auto; padding: 14px 12px 20px; }
 
-  /* Checkboxes */
-  .checkboxes { display: flex; gap: 5px; flex-shrink: 0; }
-  .check-box {
-    width: 20px; height: 20px; border-radius: 5px;
-    border: 2px solid var(--gray3); cursor: pointer;
-    display: flex; align-items: center; justify-content: center;
-    transition: all 0.15s; flex-shrink: 0; background: transparent;
-  }
-  .check-box.joe.checked  { border-color: var(--blue);   background: var(--blue); }
-  .check-box.beth.checked { border-color: var(--purple); background: var(--purple); }
-  .check-box svg { display: none; }
-  .check-box.checked svg { display: block; }
+/* ── Day card ────────────────────────────────────────────────────────────────── */
+.day-card {
+  background: var(--surface);
+  border-radius: var(--r-2xl);
+  margin-bottom: 10px;
+  overflow: hidden;
+  box-shadow: var(--shadow-1);
+  border: 1px solid var(--border);
+}
 
-  .cat-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
-  .cat-select {
-    background: transparent; border: none;
-    font-family: 'DM Mono', monospace; font-size: 9px; font-weight: 500;
-    letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer;
-    appearance: none; -webkit-appearance: none; padding-right: 2px;
-  }
-  .cat-select option { background: #fff; color: var(--dark); }
-  .vdivider { width: 1.5px; height: 18px; background: var(--border); flex-shrink: 0; }
+.day-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 15px 18px 13px;
+  border-bottom: 1px solid var(--muted5);
+  cursor: pointer; user-select: none; gap: 10px;
+  -webkit-tap-highlight-color: transparent;
+  transition: background 0.1s;
+}
+.day-header:active { background: var(--muted5); }
+.day-header-left { flex: 1; min-width: 0; }
 
-  .entry-name {
-    flex: 1; min-width: 100px; background: transparent; border: none;
-    color: var(--dark); font-size: 14px; font-weight: 400;
-  }
-  .price-wrap { display: flex; align-items: center; gap: 3px; flex-shrink: 0; }
-  .price-prefix { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--gray3); }
-  .entry-price {
-    background: transparent; border: none; color: var(--dark);
-    font-family: 'DM Mono', monospace; font-size: 13px; font-weight: 500;
-    width: 78px; text-align: right;
-  }
-  .entry-row.paid-row { background: #f0fdf4; border-color: #bbf7d0; }
-  .paid-badge {
-    display: inline-flex; align-items: center;
-    background: #dcfce7; border: 1px solid #bbf7d0; color: #16a34a;
-    border-radius: 5px; font-family: 'DM Mono', monospace; font-size: 9px;
-    font-weight: 500; letter-spacing: 0.08em; padding: 2px 7px;
-    white-space: nowrap; flex-shrink: 0;
-  }
+.day-meta { display: flex; align-items: center; gap: 7px; margin-bottom: 5px; }
+.day-num {
+  font-family: 'DM Mono', monospace; font-size: 8px; font-weight: 500;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  background: var(--dark); color: rgba(255,255,255,0.9);
+  border-radius: 4px; padding: 2px 7px; flex-shrink: 0;
+}
+.day-date {
+  font-family: 'DM Mono', monospace; font-size: 9.5px;
+  color: var(--muted2); letter-spacing: 0.03em;
+}
 
-  .entry-actions { display: flex; gap: 5px; margin-left: auto; flex-shrink: 0; flex-wrap: wrap; }
-  .micro-btn {
-    background: transparent; border: 1.5px solid var(--gray4);
-    border-radius: var(--radius-xs); color: var(--gray2); cursor: pointer;
-    font-size: 10px; font-weight: 500; padding: 3px 9px;
-    transition: all 0.15s; white-space: nowrap; letter-spacing: 0.02em;
-  }
-  .micro-btn:hover { border-color: #c8cdd8; color: var(--gray1); background: #f0f2f5; }
-  .del-btn {
-    background: none; border: none; color: var(--gray3);
-    cursor: pointer; font-size: 16px; padding: 0 2px; line-height: 1; transition: color 0.15s;
-  }
-  .del-btn:hover { color: var(--red); }
+.day-city-input {
+  background: transparent; border: none; color: var(--dark);
+  font-size: 17px; font-weight: 700; letter-spacing: -0.02em;
+  width: 100%; line-height: 1.2;
+  -webkit-appearance: none;
+}
+.day-city-input::placeholder { color: var(--muted4); }
 
-  .notes-area {
-    background: transparent; border: none; border-top: 1.5px solid var(--border);
-    color: var(--gray2); font-size: 12px; font-style: italic;
-    width: 100%; resize: none; line-height: 1.6; padding: 9px 14px; display: none;
-  }
-  .notes-area.visible { display: block; animation: fadeUp 0.18s ease; }
+.day-header-right { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+.day-total {
+  font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 500;
+  color: var(--muted); background: var(--muted5);
+  border-radius: var(--r-sm); padding: 4px 10px; white-space: nowrap;
+  border: 1px solid var(--border);
+}
+.add-btn {
+  width: 34px; height: 34px; border-radius: 50%;
+  background: var(--dark); border: none; color: #fff;
+  font-size: 20px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; line-height: 1; transition: transform 0.1s, background 0.15s;
+}
+.add-btn:active { transform: scale(0.9); background: var(--dark3); }
 
-  /* ── Day footer ── */
-  .day-footer { display: flex; align-items: center; gap: 10px; margin-top: 10px; flex-wrap: wrap; }
-  .legend { display: flex; gap: 10px; flex: 1; align-items: center; }
-  .legend-item { display: flex; align-items: center; gap: 5px; }
-  .legend-dot { width: 8px; height: 8px; border-radius: 50%; }
-  .legend-label { font-family: 'DM Mono', monospace; font-size: 9px; color: var(--gray2); letter-spacing: 0.06em; }
-  .ghost-btn {
-    background: transparent; border: 1.5px solid var(--gray4);
-    border-radius: 8px; color: var(--gray2); cursor: pointer;
-    font-size: 12px; font-weight: 500; padding: 7px 14px;
-    transition: all 0.15s; white-space: nowrap;
-  }
-  .ghost-btn:hover { border-color: #c8cdd8; color: var(--gray1); background: var(--gray6); }
+.collapse-icon {
+  color: var(--muted3); font-size: 10px; transition: transform 0.22s;
+  flex-shrink: 0; width: 16px; text-align: center;
+}
+.collapsed .collapse-icon { transform: rotate(-90deg); }
 
-  /* ── Summary bar ── */
-  .summary-bar {
-    position: fixed; bottom: 0; left: 0; right: 0;
-    background: rgba(255,255,255,0.97);
-    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-    border-top: 1.5px solid var(--border);
-    display: flex; align-items: stretch; justify-content: center;
-    z-index: 100; box-shadow: 0 -4px 24px rgba(0,0,0,0.06);
-  }
-  .sum-item {
-    display: flex; flex-direction: column; align-items: center;
-    justify-content: center; padding: 12px 22px; gap: 2px;
-  }
-  .sum-divider { width: 1.5px; background: var(--gray5); margin: 10px 0; }
-  .sum-label { font-family: 'DM Mono', monospace; font-size: 8px; letter-spacing: 0.16em; color: var(--gray2); text-transform: uppercase; }
-  .sum-value { font-family: 'DM Mono', monospace; font-size: 17px; font-weight: 600; }
-  .sum-value.total  { color: var(--dark); }
-  .sum-value.joe    { color: var(--blue); }
-  .sum-value.beth   { color: var(--purple); }
-  .sum-value.owed   { color: var(--red); }
-  .sum-value.bal    { font-size: 12px; font-family: 'DM Sans', sans-serif; }
-  .sum-value.sq     { color: var(--green); }
-  .sum-value.amber  { color: var(--amber); }
+/* ── Day body ─────────────────────────────────────────────────────────────────── */
+.day-body { padding: 10px 12px 14px; }
+.free-day-msg {
+  text-align: center; font-family: 'DM Mono', monospace;
+  font-size: 9px; letter-spacing: 0.14em; color: var(--muted3);
+  text-transform: uppercase; padding: 22px 16px;
+}
 
-  /* ── Toast ── */
-  .toast {
-    position: fixed; bottom: 80px; left: 50%;
-    transform: translateX(-50%) translateY(10px);
-    background: var(--dark); color: #f9fafb;
-    font-size: 13px; font-weight: 500; padding: 10px 20px;
-    border-radius: 10px; box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-    opacity: 0; transition: opacity 0.2s, transform 0.2s;
-    pointer-events: none; z-index: 200; white-space: nowrap;
-  }
-  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+/* ── Entry row ───────────────────────────────────────────────────────────────── */
+.entry-row {
+  background: var(--surface2); border: 1px solid var(--border);
+  border-radius: var(--r-xl); margin-bottom: 7px; overflow: hidden;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  animation: fadeUp 0.15s ease forwards;
+}
+.entry-row:focus-within { border-color: var(--muted3); box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+.entry-row.paid-row { background: var(--green-bg); border-color: var(--green-bd); }
 
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(6px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
+/* Top row: full-width flex */
+.entry-top {
+  display: flex; align-items: center; gap: 0;
+  padding: 11px 13px 0;
+}
+/* Bottom row */
+.entry-bottom {
+  display: flex; align-items: center;
+  padding: 7px 13px 10px; gap: 0;
+}
 
-  /* ── Tabs ── */
-  .tab-bar {
-    background: var(--dark2); border-top: 1px solid #2d3748;
-    padding: 0 24px; display: flex; align-items: stretch; gap: 0;
-  }
-  .tab-bar-inner { max-width: 860px; margin: 0 auto; display: flex; gap: 0; align-items: stretch; flex: 1; }
-  .tab-btn {
-    background: transparent; border: none; border-bottom: 2px solid transparent;
-    color: #6b7280; cursor: pointer; font-size: 12px; font-weight: 500;
-    letter-spacing: 0.04em; padding: 12px 18px; transition: all 0.15s;
-    white-space: nowrap; text-transform: uppercase;
-    font-family: 'DM Mono', monospace;
-  }
-  .tab-btn:hover { color: #d1d5db; }
-  .tab-btn.active { color: #f9fafb; border-bottom-color: var(--blue); }
-  .tab-panel { display: none; }
-  .tab-panel.active { display: block; }
+/* Checks */
+.entry-checks { display: flex; gap: 5px; margin-right: 9px; flex-shrink: 0; }
+.check-box {
+  width: 24px; height: 24px; border-radius: 7px;
+  border: 2px solid var(--muted4); cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.15s; flex-shrink: 0; background: var(--surface);
+}
+.check-box.joe.checked  { border-color: var(--blue);   background: var(--blue); }
+.check-box.beth.checked { border-color: var(--purple); background: var(--purple); }
+.check-box svg { display: none; }
+.check-box.checked svg { display: block; }
 
-  /* ── Toolbar (import/export) ── */
-  .toolbar { background: var(--dark2); padding: 10px 24px; border-top: 1px solid #1a2332; }
-  .toolbar-inner { max-width: 860px; margin: 0 auto; display: flex; gap: 8px; align-items: center; }
+/* Category */
+.entry-cat { display: flex; align-items: center; gap: 5px; margin-right: 9px; flex-shrink: 0; }
+.cat-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+.cat-select {
+  background: transparent; border: none;
+  font-family: 'DM Mono', monospace; font-size: 8.5px; font-weight: 600;
+  letter-spacing: 0.09em; text-transform: uppercase; cursor: pointer;
+  appearance: none; -webkit-appearance: none; color: inherit;
+  max-width: 68px; padding: 0;
+}
+.cat-select option { background: #fff; color: var(--dark); }
 
-  /* ── Prompt builder ── */
-  .prompt-main { max-width: 860px; margin: 0 auto; padding: 24px 16px 100px; }
-  .prompt-intro {
-    background: var(--white); border-radius: var(--radius);
-    padding: 20px 24px; margin-bottom: 20px;
-    box-shadow: var(--shadow-sm);
-    font-size: 14px; color: var(--gray1); line-height: 1.7;
-  }
-  .prompt-intro strong { color: var(--dark); }
-  .prompt-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-  @media (max-width: 600px) { .prompt-grid { grid-template-columns: 1fr; } }
-  .prompt-card {
-    background: var(--white); border-radius: var(--radius);
-    box-shadow: var(--shadow-sm); overflow: hidden;
-    transition: box-shadow 0.2s;
-  }
-  .prompt-card:hover { box-shadow: var(--shadow-md); }
-  .prompt-card-header {
-    padding: 16px 20px 12px; border-bottom: 1.5px solid var(--gray5);
-    display: flex; align-items: flex-start; gap: 12px;
-  }
-  .prompt-icon {
-    width: 34px; height: 34px; border-radius: 9px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 16px; flex-shrink: 0;
-  }
-  .prompt-card-title { font-size: 14px; font-weight: 600; color: var(--dark); margin-bottom: 3px; }
-  .prompt-card-desc  { font-size: 12px; color: var(--gray2); line-height: 1.5; }
-  .prompt-card-body  { padding: 14px 20px 16px; }
-  .prompt-preview {
-    background: var(--gray6); border: 1.5px solid var(--border);
-    border-radius: 8px; padding: 12px 14px;
-    font-family: 'DM Mono', monospace; font-size: 11px;
-    color: var(--gray1); line-height: 1.65;
-    max-height: 120px; overflow: hidden;
-    position: relative; margin-bottom: 12px;
-    white-space: pre-wrap; word-break: break-word;
-  }
-  .prompt-preview::after {
-    content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 32px;
-    background: linear-gradient(transparent, var(--gray6));
-  }
-  .copy-btn {
-    width: 100%; padding: 9px;
-    background: var(--dark); border: none; border-radius: 8px;
-    color: #f9fafb; cursor: pointer; font-size: 12px; font-weight: 600;
-    letter-spacing: 0.04em; transition: background 0.15s;
-    font-family: 'DM Sans', sans-serif;
-  }
-  .copy-btn:hover { background: var(--dark3); }
-  .copy-btn.copied { background: var(--green); }
+.entry-vdiv { width: 1px; height: 16px; background: var(--border); margin: 0 9px; flex-shrink: 0; }
+
+/* Name */
+.entry-name {
+  flex: 1; min-width: 0; background: transparent; border: none;
+  color: var(--dark); font-size: 14px; font-weight: 400; line-height: 1.3;
+  -webkit-appearance: none;
+}
+
+/* Price row */
+.entry-price-wrap { display: flex; align-items: center; gap: 3px; flex: 1; }
+.price-prefix { font-family: 'DM Mono', monospace; font-size: 9.5px; color: var(--muted3); }
+.entry-price {
+  background: transparent; border: none; color: var(--dark);
+  font-family: 'DM Mono', monospace; font-size: 14px; font-weight: 500;
+  width: 90px; -webkit-appearance: none;
+}
+
+/* Actions */
+.entry-actions { display: flex; align-items: center; gap: 6px; margin-left: auto; flex-shrink: 0; }
+.paid-badge {
+  display: inline-flex; align-items: center;
+  background: #d1fae5; border: 1px solid var(--green-bd); color: #065f46;
+  border-radius: 5px; font-family: 'DM Mono', monospace; font-size: 8.5px;
+  font-weight: 700; letter-spacing: 0.06em; padding: 3px 8px;
+  white-space: nowrap; flex-shrink: 0;
+}
+.notes-toggle {
+  background: transparent; border: 1px solid var(--muted4);
+  border-radius: var(--r-sm); color: var(--muted2); cursor: pointer;
+  font-size: 10px; font-weight: 500; padding: 5px 10px;
+  white-space: nowrap; min-height: 30px; transition: all 0.12s;
+}
+.notes-toggle:active { background: var(--muted5); }
+.del-btn {
+  background: none; border: none; color: var(--muted3);
+  cursor: pointer; font-size: 20px; line-height: 1;
+  min-width: 32px; min-height: 32px;
+  display: flex; align-items: center; justify-content: center;
+  transition: color 0.15s;
+}
+.del-btn:active { color: var(--red); }
+
+.notes-area {
+  background: transparent; border: none; border-top: 1px solid var(--border);
+  color: var(--muted); font-size: 13px; font-style: italic;
+  width: 100%; resize: none; line-height: 1.6;
+  padding: 10px 13px; display: none; -webkit-appearance: none;
+}
+.notes-area.visible { display: block; animation: fadeUp 0.15s ease; }
+
+/* ── Day footer ──────────────────────────────────────────────────────────────── */
+.day-footer {
+  display: flex; align-items: center; gap: 8px;
+  margin-top: 8px; padding: 0 2px;
+}
+.legend { display: flex; gap: 10px; flex: 1; align-items: center; }
+.legend-item { display: flex; align-items: center; gap: 4px; }
+.legend-dot { width: 7px; height: 7px; border-radius: 50%; }
+.legend-label {
+  font-family: 'DM Mono', monospace; font-size: 9px;
+  color: var(--muted2); letter-spacing: 0.03em;
+}
+.add-entry-btn {
+  display: flex; align-items: center; gap: 5px;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--r-md); color: var(--muted2); cursor: pointer;
+  font-size: 12px; font-weight: 500; padding: 8px 14px;
+  white-space: nowrap; min-height: 36px; transition: all 0.12s;
+}
+.add-entry-btn:active { background: var(--muted5); }
+
+/* ── Summary bar ─────────────────────────────────────────────────────────────── */
+.summary-bar {
+  position: fixed; bottom: 0; left: 0; right: 0;
+  background: rgba(13,17,23,0.97);
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  border-top: 1px solid rgba(255,255,255,0.07);
+  display: flex; align-items: stretch; justify-content: center;
+  z-index: 100; overflow-x: auto; -webkit-overflow-scrolling: touch;
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  box-shadow: 0 -8px 32px rgba(0,0,0,0.2);
+}
+.summary-bar::-webkit-scrollbar { display: none; }
+.sum-item {
+  display: flex; flex-direction: column; align-items: center;
+  justify-content: center; padding: 10px 14px; gap: 3px; flex-shrink: 0;
+}
+.sum-divider { width: 1px; background: rgba(255,255,255,0.07); margin: 8px 0; flex-shrink: 0; }
+.sum-label {
+  font-family: 'DM Mono', monospace; font-size: 6.5px;
+  letter-spacing: 0.18em; color: #3d4d63;
+  text-transform: uppercase; white-space: nowrap;
+}
+.sum-value {
+  font-family: 'DM Mono', monospace; font-size: 14px;
+  font-weight: 600; white-space: nowrap; color: #e8edf4;
+}
+.sum-value.joe    { color: #60a5fa; }
+.sum-value.beth   { color: #a78bfa; }
+.sum-value.owed   { color: #f87171; }
+.sum-value.bal    { font-size: 10.5px; font-family: 'DM Sans', sans-serif; font-weight: 600; color: #e8edf4; }
+.sum-value.sq     { color: #34d399; }
+.sum-value.amber  { color: #fbbf24; }
+
+/* ── Toast ──────────────────────────────────────────────────────────────────── */
+.toast {
+  position: fixed; bottom: 78px; left: 50%;
+  transform: translateX(-50%) translateY(6px);
+  background: var(--dark3); color: #e8edf4;
+  font-size: 13px; font-weight: 500; padding: 9px 18px;
+  border-radius: var(--r-lg); box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+  opacity: 0; transition: opacity 0.18s, transform 0.18s;
+  pointer-events: none; z-index: 200; white-space: nowrap;
+  border: 1px solid var(--dark4);
+}
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+/* ── Prompt builder ─────────────────────────────────────────────────────────── */
+.prompt-main { max-width: 860px; margin: 0 auto; padding: 14px 12px 110px; }
+.prompt-intro {
+  background: var(--surface); border-radius: var(--r-2xl);
+  padding: 16px 18px; margin-bottom: 14px;
+  box-shadow: var(--shadow-1); border: 1px solid var(--border);
+  font-size: 13.5px; color: var(--muted); line-height: 1.7;
+}
+.prompt-intro strong { color: var(--dark); font-weight: 600; }
+.prompt-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+@media (max-width: 540px) { .prompt-grid { grid-template-columns: 1fr; } }
+
+.prompt-card {
+  background: var(--surface); border-radius: var(--r-xl);
+  box-shadow: var(--shadow-1); overflow: hidden;
+  border: 1px solid var(--border);
+}
+.prompt-card-header {
+  padding: 14px 16px 12px; border-bottom: 1px solid var(--muted5);
+  display: flex; align-items: flex-start; gap: 11px;
+}
+.prompt-icon {
+  width: 34px; height: 34px; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 17px; flex-shrink: 0;
+}
+.prompt-card-title { font-size: 13.5px; font-weight: 600; color: var(--dark); margin-bottom: 3px; }
+.prompt-card-desc  { font-size: 11.5px; color: var(--muted2); line-height: 1.55; }
+.prompt-card-body  { padding: 12px 16px 14px; }
+.prompt-preview {
+  background: var(--muted5); border: 1px solid var(--border);
+  border-radius: var(--r-md); padding: 10px 12px;
+  font-family: 'DM Mono', monospace; font-size: 10px;
+  color: var(--muted2); line-height: 1.7;
+  max-height: 96px; overflow: hidden;
+  position: relative; margin-bottom: 10px;
+  white-space: pre-wrap; word-break: break-word;
+}
+.prompt-preview::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 28px;
+  background: linear-gradient(transparent, var(--muted5));
+  pointer-events: none;
+}
+.copy-btn {
+  width: 100%; padding: 12px;
+  background: var(--dark); border: none; border-radius: var(--r-md);
+  color: #e8edf4; cursor: pointer; font-size: 13px; font-weight: 600;
+  letter-spacing: 0.03em; transition: all 0.15s;
+  min-height: 44px;
+}
+.copy-btn:active { background: var(--dark3); transform: scale(0.98); }
+.copy-btn.copied { background: var(--green); color: #fff; }
+
+/* ── Animations ──────────────────────────────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
 
 </style>
+
 </head>
 <body>
 
@@ -356,25 +457,25 @@
   <div class="header-inner">
     <div>
       <div class="header-eyebrow">Trip Planner · Japan 2025</div>
-      <div class="header-title">🇯🇵 JAPAN 2025</div>
-      <div class="header-sub">Joe &amp; Beth · 25 April – 10 May · 16 days</div>
+      <div class="header-title">🇯🇵 Japan 2025</div>
+      <div class="header-sub">Joe &amp; Beth &middot; 25 Apr – 10 May &middot; 16 days</div>
     </div>
     <div class="header-chips">
       <div class="header-chip">
-        <div class="chip-label">Days Planned</div>
+        <div class="chip-label">Planned</div>
         <div class="chip-value" id="hdr-planned">0/16</div>
       </div>
       <div class="header-chip">
-        <div class="chip-label">Total Cost</div>
-        <div class="chip-value green" id="hdr-total">$0.00</div>
+        <div class="chip-label">Total</div>
+        <div class="chip-value green" id="hdr-total">$0</div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- Tab bar -->
-<div class="tab-bar">
-  <div class="tab-bar-inner">
+<!-- Nav -->
+<div class="nav">
+  <div class="nav-inner">
     <button class="tab-btn active" onclick="switchTab('itinerary', this)">📅 Itinerary</button>
     <button class="tab-btn" onclick="switchTab('prompts', this)">✦ Prompt Builder</button>
   </div>
@@ -384,8 +485,8 @@
 <div class="toolbar">
   <div class="toolbar-inner">
     <button class="toolbar-btn primary" onclick="exportJSON()">⬇ Export JSON</button>
-    <button class="toolbar-btn" onclick="document.getElementById('import-file').click()">⬆ Import JSON</button>
-    <input type="file" id="import-file" accept=".json" style="display:none" onchange="importJSON(event)">
+    <label class="toolbar-btn" for="import-file" style="cursor:pointer;">⬆ Import JSON</label>
+    <input type="file" id="import-file" accept=".json" style="position:absolute;width:1px;height:1px;opacity:0;overflow:hidden;z-index:-1;" onchange="importJSON(event)">
   </div>
 </div>
 
@@ -401,13 +502,13 @@
 
 <!-- Summary bar -->
 <div class="summary-bar">
-  <div class="sum-item"><div class="sum-label">Total Trip</div><div class="sum-value total" id="sum-total">$0.00</div></div>
+  <div class="sum-item"><div class="sum-label">Total</div><div class="sum-value" id="sum-total">$0.00</div></div>
   <div class="sum-divider"></div>
-  <div class="sum-item"><div class="sum-label">Joe Paid</div><div class="sum-value joe" id="sum-joe">$0.00</div></div>
+  <div class="sum-item"><div class="sum-label">Joe</div><div class="sum-value joe" id="sum-joe">$0.00</div></div>
   <div class="sum-divider"></div>
-  <div class="sum-item"><div class="sum-label">Beth Paid</div><div class="sum-value beth" id="sum-beth">$0.00</div></div>
+  <div class="sum-item"><div class="sum-label">Beth</div><div class="sum-value beth" id="sum-beth">$0.00</div></div>
   <div class="sum-divider"></div>
-  <div class="sum-item"><div class="sum-label">Still Owed</div><div class="sum-value owed" id="sum-owed">$0.00</div></div>
+  <div class="sum-item"><div class="sum-label">Owed</div><div class="sum-value owed" id="sum-owed">$0.00</div></div>
   <div class="sum-divider"></div>
   <div class="sum-item"><div class="sum-label">Balance</div><div class="sum-value bal sq" id="sum-bal">All square ✓</div></div>
 </div>
@@ -416,6 +517,7 @@
 <div class="toast" id="toast"></div>
 
 <script>
+
 // ── Config ──────────────────────────────────────────────────────────────────
 const TRIP_START  = new Date('2025-04-25');
 const TOTAL_DAYS  = 16;
@@ -462,7 +564,6 @@ function loadState() {
     const s = localStorage.getItem(STORAGE_KEY);
     if (s) {
       const parsed = JSON.parse(s);
-      // Merge saved data over defaults so new days always exist
       if (parsed.days) {
         parsed.days.forEach(saved => {
           const idx = state.days.findIndex(d => d.index === saved.index);
@@ -550,21 +651,20 @@ function buildDayCard(di) {
   card.className = 'day-card' + (collapsed ? ' collapsed' : '');
   card.id = `day-${di}`;
 
-  // ── Header
   const hdr = document.createElement('div');
   hdr.className = 'day-header';
   hdr.innerHTML = `
     <div class="day-header-left">
-      <div class="day-chip-row">
-        <span class="day-chip">Day ${di + 1}</span>
+      <div class="day-meta">
+        <span class="day-num">Day ${di + 1}</span>
         <span class="day-date">${info.display}</span>
       </div>
-      <input class="day-city-input" placeholder="Add city or area..." value="${esc(day.city)}" />
+      <input class="day-city-input" placeholder="City or area..." value="${esc(day.city)}" />
     </div>
     <div class="day-header-right">
       ${total > 0 ? `<div class="day-total">${fmt(total)}</div>` : ''}
       <button class="add-btn" title="Add entry">+</button>
-      <div class="collapse-arrow">▾</div>
+      <div class="collapse-icon">▾</div>
     </div>`;
 
   hdr.querySelector('.day-city-input').addEventListener('click', e => e.stopPropagation());
@@ -577,7 +677,6 @@ function buildDayCard(di) {
   hdr.addEventListener('click', () => toggleCollapse(di));
   card.appendChild(hdr);
 
-  // ── Body
   const body = document.createElement('div');
   body.className = 'day-body';
   body.id = `day-body-${di}`;
@@ -589,19 +688,17 @@ function buildDayCard(di) {
     day.entries.forEach(entry => body.appendChild(buildEntryRow(di, entry.id)));
   }
 
-  // Footer
   const footer = document.createElement('div');
   footer.className = 'day-footer';
   footer.innerHTML = `
     <div class="legend">
       <div class="legend-item"><div class="legend-dot" style="background:#3b82f6"></div><span class="legend-label">Joe</span></div>
-      <div class="legend-item"><div class="legend-dot" style="background:#8b5cf6"></div><span class="legend-label">Beth</span></div>
+      <div class="legend-item"><div class="legend-dot" style="background:#7c3aed"></div><span class="legend-label">Beth</span></div>
     </div>
-    <button class="ghost-btn" id="add-footer-${di}">+ Add entry</button>`;
+    <button class="add-entry-btn" id="add-footer-${di}">+ Add entry</button>`;
   footer.querySelector(`#add-footer-${di}`).addEventListener('click', () => addEntry(di));
   body.appendChild(footer);
   card.appendChild(body);
-
   return card;
 }
 
@@ -616,35 +713,38 @@ function buildEntryRow(di, eid) {
   row.id = `entry-${eid}`;
 
   const main = document.createElement('div');
-  main.className = 'entry-main';
+  main.className = 'entry-main-wrap';
   main.innerHTML = `
-    <div class="checkboxes">
-      <div class="check-box joe ${entry.joePaid ? 'checked':''}" data-who="joe" title="Joe paid">
-        <svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <div class="entry-top">
+      <div class="entry-checks">
+        <div class="check-box joe ${entry.joePaid ? 'checked':''}" data-who="joe" title="Joe paid">
+          <svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="check-box beth ${entry.bethPaid ? 'checked':''}" data-who="beth" title="Beth paid">
+          <svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
       </div>
-      <div class="check-box beth ${entry.bethPaid ? 'checked':''}" data-who="beth" title="Beth paid">
-        <svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div class="entry-cat">
+        <div class="cat-dot" style="background:${cat.color}"></div>
+        <select class="cat-select" style="color:${cat.color}">
+          ${Object.entries(CATS).map(([k,v])=>`<option value="${k}"${entry.category===k?' selected':''}>${v.label}</option>`).join('')}
+        </select>
       </div>
+      <div class="entry-vdiv"></div>
+      <input class="entry-name" placeholder="Description..." value="${esc(entry.name)}" />
     </div>
-    <div style="display:flex;align-items:center;gap:5px;flex-shrink:0;">
-      <div class="cat-dot" style="background:${cat.color}"></div>
-      <select class="cat-select" style="color:${cat.color}">
-        ${Object.entries(CATS).map(([k,v])=>`<option value="${k}"${entry.category===k?' selected':''}>${v.label}</option>`).join('')}
-      </select>
-    </div>
-    <div class="vdivider"></div>
-    <input class="entry-name" placeholder="Description..." value="${esc(entry.name)}" />
-    <div class="price-wrap">
-      <span class="price-prefix">A$</span>
-      <input class="entry-price" type="number" min="0" step="0.01" placeholder="0.00" value="${entry.price||''}">
-    </div>
-    <div class="entry-actions">
-      ${isPaid ? '<span class="paid-badge">✓ paid</span>' : ''}
-      <button class="micro-btn notes-toggle">${entry.notes ? '− notes' : '+ notes'}</button>
-      <button class="del-btn" title="Remove">×</button>
+    <div class="entry-bottom">
+      <div class="entry-price-wrap">
+        <span class="price-prefix">A$</span>
+        <input class="entry-price" type="number" min="0" step="0.01" placeholder="0.00" value="${entry.price||''}">
+      </div>
+      <div class="entry-actions">
+        ${isPaid ? '<span class="paid-badge">✓ paid</span>' : ''}
+        <button class="notes-toggle">${entry.notes ? '− notes' : '+ notes'}</button>
+        <button class="del-btn" title="Remove">×</button>
+      </div>
     </div>`;
 
-  // Checkboxes
   main.querySelectorAll('.check-box').forEach(cb => {
     cb.addEventListener('click', () => {
       const e = getEntry(di, eid);
@@ -656,30 +756,25 @@ function buildEntryRow(di, eid) {
     });
   });
 
-  // Category
   main.querySelector('.cat-select').addEventListener('change', ev => {
     const e = getEntry(di, eid); e.category = ev.target.value; setEntry(di, e);
     refreshDayCard(di);
   });
 
-  // Name
   main.querySelector('.entry-name').addEventListener('input', ev => {
     const e = getEntry(di, eid); e.name = ev.target.value; setEntry(di, e); updateSummary();
   });
 
-  // Price
   main.querySelector('.entry-price').addEventListener('input', ev => {
     const e = getEntry(di, eid); e.price = ev.target.value; setEntry(di, e); updateSummary();
   });
 
-  // Notes toggle
   main.querySelector('.notes-toggle').addEventListener('click', () => {
     const na = row.querySelector('.notes-area');
     const visible = na.classList.toggle('visible');
     main.querySelector('.notes-toggle').textContent = visible ? '− notes' : '+ notes';
   });
 
-  // Delete
   main.querySelector('.del-btn').addEventListener('click', () => {
     const d = getDay(di);
     d.entries = d.entries.filter(e => e.id !== eid);
@@ -690,7 +785,6 @@ function buildEntryRow(di, eid) {
 
   row.appendChild(main);
 
-  // Notes
   const na = document.createElement('textarea');
   na.className = 'notes-area' + (entry.notes ? ' visible' : '');
   na.rows = 2;
@@ -717,12 +811,8 @@ function toggleCollapse(di) {
 
 function addEntry(di) {
   const day = getDay(di);
-  // Expand if collapsed
   if (day._collapsed) { day._collapsed = false; setDay(day); }
-  day.entries.push({
-    id: uid(), category: 'activity', name: '', price: '',
-    joePaid: false, bethPaid: false, notes: '',
-  });
+  day.entries.push({ id: uid(), category: 'activity', name: '', price: '', joePaid: false, bethPaid: false, notes: '' });
   setDay(day);
   refreshDayCard(di);
   updateSummary();
@@ -738,9 +828,8 @@ function updateSummary() {
   const diff  = joe - beth;
   const bal   = diff === 0
     ? 'All square ✓'
-    : diff > 0
-      ? `Beth owes Joe ${fmt(Math.abs(diff) / 2)}`
-      : `Joe owes Beth ${fmt(Math.abs(diff) / 2)}`;
+    : diff > 0 ? `Beth owes Joe ${fmt(Math.abs(diff) / 2)}`
+    : `Joe owes Beth ${fmt(Math.abs(diff) / 2)}`;
   const planned = state.days.filter(d => d.entries.length > 0).length;
 
   document.getElementById('sum-total').textContent   = fmt(total);
@@ -754,7 +843,6 @@ function updateSummary() {
   balEl.textContent = bal;
   balEl.className   = `sum-value bal ${diff === 0 ? 'sq' : 'amber'}`;
 }
-
 
 // ── Tabs ─────────────────────────────────────────────────────────────────────
 function switchTab(name, btn) {
@@ -784,9 +872,7 @@ function buildCurrentJSON() {
 
 const PROMPTS = [
   {
-    icon: '🗓️',
-    color: '#eff6ff',
-    iconBg: '#dbeafe',
+    icon: '🗓️', iconBg: '#dbeafe',
     title: 'Fill in empty days',
     desc: 'Suggests activities, transport and accommodation for days with nothing planned yet.',
     build: () => `You are a Japan travel expert helping plan a trip for two people (Joe & Beth) travelling from Melbourne, Australia.
@@ -800,9 +886,7 @@ Please fill in sensible activities, accommodation, and transport entries for any
 Return the COMPLETE updated JSON only — no explanation, no markdown fences. The JSON must be valid and match the same structure as the input.`
   },
   {
-    icon: '💰',
-    color: '#f0fdf4',
-    iconBg: '#dcfce7',
+    icon: '💰', iconBg: '#dcfce7',
     title: 'Estimate missing prices',
     desc: 'Fills in realistic AUD price estimates for any entries that are missing a price.',
     build: () => `You are a Japan travel expert. Below is a trip itinerary JSON for Joe & Beth travelling from Melbourne.
@@ -812,9 +896,7 @@ ${buildCurrentJSON()}
 For every entry where "price" is empty or "0", fill in a realistic estimated price in AUD based on typical costs in Japan in 2025. Do not change any other fields. Return the COMPLETE updated JSON only — no explanation, no markdown fences.`
   },
   {
-    icon: '🚅',
-    color: '#fdf4ff',
-    iconBg: '#f3e8ff',
+    icon: '🚅', iconBg: '#f3e8ff',
     title: 'Add transport between cities',
     desc: 'Adds Shinkansen, bus or flight entries between each city change in the itinerary.',
     build: () => `You are a Japan travel expert. Here is a trip itinerary for Joe & Beth:
@@ -827,12 +909,10 @@ ${buildCurrentJSON()}
 Look at the city changes across the trip and add realistic transport entries (Shinkansen, highway bus, domestic flight, etc.) on the appropriate travel days. Include estimated AUD prices. Return the COMPLETE updated JSON only — no explanation, no markdown fences.`
   },
   {
-    icon: '🏨',
-    color: '#fff7ed',
-    iconBg: '#fed7aa',
+    icon: '🏨', iconBg: '#fed7aa',
     title: 'Add accommodation for all nights',
     desc: 'Adds a hotel or ryokan stay entry for every night that doesn\'t have one.',
-    build: () => `You are a Japan travel expert. Here is Joe & Beth's trip itinerary:
+    build: () => `You are a Japan travel expert. Here is Joe & Beth\'s trip itinerary:
 
 ${buildTripSummary()}
 
@@ -842,24 +922,20 @@ ${buildCurrentJSON()}
 For any day that doesn\'t already have an accommodation entry, add a suitable hotel or ryokan recommendation with a realistic AUD price for that city. Return the COMPLETE updated JSON only — no explanation, no markdown fences.`
   },
   {
-    icon: '🍜',
-    color: '#fefce8',
-    iconBg: '#fef08a',
+    icon: '🍜', iconBg: '#fef08a',
     title: 'Add food & dining experiences',
     desc: 'Suggests must-try restaurants, food markets and dining experiences for each city.',
-    build: () => `You are a Japan food and travel expert. Here is Joe & Beth's itinerary:
+    build: () => `You are a Japan food and travel expert. Here is Joe & Beth\'s itinerary:
 
 ${buildTripSummary()}
 
 Full JSON:
 ${buildCurrentJSON()}
 
-Add 1–2 dining or food experience entries per day (e.g. ramen, izakaya, tsukiji market, conveyor belt sushi) that are well-suited to each city. Include realistic AUD price estimates per person x2. Return the COMPLETE updated JSON only — no explanation, no markdown fences.`
+Add 1-2 dining or food experience entries per day (e.g. ramen, izakaya, tsukiji market, conveyor belt sushi) that are well-suited to each city. Include realistic AUD price estimates per person x2. Return the COMPLETE updated JSON only — no explanation, no markdown fences.`
   },
   {
-    icon: '✂️',
-    color: '#fdf2f8',
-    iconBg: '#fbcfe8',
+    icon: '✂️', iconBg: '#fbcfe8',
     title: 'Trim & optimise the schedule',
     desc: 'Removes duplicates, reorders entries logically and flags anything that looks over-scheduled.',
     build: () => `You are a Japan travel expert reviewing an itinerary for Joe & Beth.
@@ -878,23 +954,19 @@ Please:
 Return the COMPLETE updated JSON only — no explanation, no markdown fences.`
   },
   {
-    icon: '📋',
-    color: '#f0f9ff',
-    iconBg: '#bae6fd',
+    icon: '📋', iconBg: '#bae6fd',
     title: 'Generate a packing list',
     desc: 'Creates a packing list based on your activities, cities and the time of year.',
     build: () => `You are a Japan travel expert. Based on this itinerary for Joe & Beth travelling in late April to early May 2025:
 
 ${buildTripSummary()}
 
-Generate a practical packing list grouped by category (Clothing, Documents, Electronics, Toiletries, Japan-specific items, etc.). Consider the weather (spring, cherry blossom season), the activities planned, and that they are flying from Melbourne. 
+Generate a practical packing list grouped by category (Clothing, Documents, Electronics, Toiletries, Japan-specific items, etc.). Consider the weather (spring, cherry blossom season), the activities planned, and that they are flying from Melbourne.
 
 Return as a clean plain-text list — no JSON needed for this one. Just the packing list, ready to copy.`
   },
   {
-    icon: '📝',
-    color: '#f8fafc',
-    iconBg: '#e2e8f0',
+    icon: '📝', iconBg: '#e2e8f0',
     title: 'Custom prompt',
     desc: 'Write your own instruction. Your current trip data will be appended automatically.',
     custom: true,
@@ -911,10 +983,9 @@ function renderPrompts() {
   const el = document.getElementById('prompt-main');
   el.innerHTML = '';
 
-  // Intro
   const intro = document.createElement('div');
   intro.className = 'prompt-intro';
-  intro.innerHTML = `<strong>How it works:</strong> Each prompt below is pre-loaded with your current trip data. Click <strong>Copy Prompt</strong>, paste it into any AI (ChatGPT, Claude, Gemini, etc.), and it will return an updated JSON you can import back using the <strong>Import JSON</strong> button.`;
+  intro.innerHTML = `<strong>How it works:</strong> Each prompt below is pre-loaded with your current trip data. Tap <strong>Copy Prompt</strong>, paste it into any AI (ChatGPT, Claude, Gemini etc.), and it returns an updated JSON you can import back with the <strong>Import</strong> button.`;
   el.appendChild(intro);
 
   const grid = document.createElement('div');
@@ -926,7 +997,7 @@ function renderPrompts() {
 
     let customTextarea = '';
     if (p.custom) {
-      customTextarea = `<textarea id="custom-prompt-text" placeholder="e.g. Add a day trip to Nikko on day 5..." style="width:100%;background:var(--gray6);border:1.5px solid var(--border);border-radius:8px;padding:10px 12px;font-size:12px;color:var(--dark);resize:vertical;min-height:72px;font-family:'DM Sans',sans-serif;margin-bottom:12px;outline:none;"></textarea>`;
+      customTextarea = `<textarea id="custom-prompt-text" placeholder="e.g. Add a day trip to Nikko on day 5..." style="width:100%;background:var(--gray6);border:1.5px solid var(--border);border-radius:8px;padding:10px 12px;font-size:13px;color:var(--dark);resize:vertical;min-height:80px;font-family:'DM Sans',sans-serif;margin-bottom:12px;outline:none;-webkit-appearance:none;"></textarea>`;
     }
 
     card.innerHTML = `
@@ -938,35 +1009,25 @@ function renderPrompts() {
         </div>
       </div>
       <div class="prompt-card-body">
-        ${p.custom ? customTextarea : `<div class="prompt-preview" id="preview-${i}">${esc(p.build().substring(0, 300))}</div>`}
+        ${p.custom ? customTextarea : `<div class="prompt-preview" id="preview-${i}">${esc(p.build().substring(0, 280))}</div>`}
         <button class="copy-btn" id="copy-btn-${i}">Copy Prompt</button>
       </div>`;
 
     card.querySelector(`#copy-btn-${i}`).addEventListener('click', function() {
-      let text;
-      if (p.custom) {
-        const customVal = document.getElementById('custom-prompt-text')?.value || '';
-        text = p.build(customVal);
-      } else {
-        text = p.build();
-      }
+      const text = p.custom
+        ? p.build(document.getElementById('custom-prompt-text')?.value || '')
+        : p.build();
       navigator.clipboard.writeText(text).then(() => {
         this.textContent = '✓ Copied!';
         this.classList.add('copied');
-        setTimeout(() => {
-          this.textContent = 'Copy Prompt';
-          this.classList.remove('copied');
-        }, 2000);
+        setTimeout(() => { this.textContent = 'Copy Prompt'; this.classList.remove('copied'); }, 2000);
       }).catch(() => {
-        // Fallback for browsers that block clipboard
         const ta = document.createElement('textarea');
-        ta.value = text;
-        ta.style.position = 'fixed'; ta.style.opacity = '0';
-        document.body.appendChild(ta);
-        ta.select(); document.execCommand('copy');
+        ta.value = text; ta.style.cssText = 'position:fixed;opacity:0;top:0;left:0;';
+        document.body.appendChild(ta); ta.focus(); ta.select();
+        try { document.execCommand('copy'); } catch {}
         document.body.removeChild(ta);
-        this.textContent = '✓ Copied!';
-        this.classList.add('copied');
+        this.textContent = '✓ Copied!'; this.classList.add('copied');
         setTimeout(() => { this.textContent = 'Copy Prompt'; this.classList.remove('copied'); }, 2000);
       });
     });
@@ -985,9 +1046,10 @@ document.addEventListener('DOMContentLoaded', function() {
   } catch(e) {
     console.error('Init error:', e);
     document.getElementById('days-container').innerHTML =
-      '<div style="padding:40px;text-align:center;color:#9ca3af;font-family:monospace">Error loading planner: ' + e.message + '</div>';
+      '<div style="padding:40px;text-align:center;color:#94a3b8;font-family:monospace;font-size:13px">Error loading planner: ' + e.message + '</div>';
   }
 });
+
 </script>
 </body>
 </html>
